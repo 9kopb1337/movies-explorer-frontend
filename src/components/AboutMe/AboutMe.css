@@ -1,0 +1,203 @@
+.about-me {
+  margin: 0 auto;
+  max-width: 1280px;
+  min-height: 507px;
+}
+
+.about-me__title {
+  margin-bottom: 66px;
+  margin-top: 110px;
+  display: block;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  color: #fff;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #fff;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.about-me__content {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 30px;
+}
+
+.about-me__info {
+  width: 50%;
+}
+
+.about-me__name {
+  margin-bottom: 18px;
+  display: block;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+  color: #fff;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+}
+
+.about-me__job {
+  margin-bottom: 26px;
+  display: block;
+  line-height: 20px;
+  color: #fff;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.about-me__bio {
+  margin-bottom: 99px;
+  display: block;
+  line-height: 22px;
+  color: #fff;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.about-me__link {
+  line-height: 17px;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s ease;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.about-me__link:first-of-type {
+  margin-right: 20px;
+}
+
+.about-me__link:hover {
+  opacity: 0.7;
+}
+
+.about-me__photo {
+  width: 270px;
+  height: 327px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media (max-width: 1300px) {
+  .about-me {
+    margin: 0 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .about-me__name {
+    color: #FFF;
+    line-height: 40px;
+    letter-spacing: -1.6px;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .about-me__job {
+    color: #FFF;
+    line-height: 18px;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .about-me__bio {
+    color: #FFF;
+    line-height: 18px;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .about-me__link {
+    color: #FFF;
+    line-height: normal;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 540px) {
+  .about-me {
+    margin: 0 14px;
+  }
+
+  .about-me__photo {
+    margin: 0 14px 40px;
+    max-width: 292px;
+    height: 352px;
+  }
+
+  .about-me__content {
+    flex-direction: column;
+  }
+
+  .about-me__info {
+    order: 2;
+    width: 100%;
+  }
+
+  .about-me__name {
+    color: #FFF;
+    line-height: normal;
+    letter-spacing: -1.2px;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .about-me__job {
+    color: #FFF;
+    line-height: 16px;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .about-me__bio {
+    margin-bottom: 40px;
+    color: #FFF;
+    line-height: 16px;
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  .about-me__link {
+    color: #FFF;
+    line-height: normal;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+  }
+}

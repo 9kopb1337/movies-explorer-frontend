@@ -1,0 +1,44 @@
+.page__container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 400px;
+}
+
+.page__info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.page__status {
+  margin-bottom: 5px;
+  line-height: 169px;
+  display: block;  
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 140px;
+}
+
+.page__notfound {
+  line-height: 19px;
+  text-align: center;  
+  font-family: Inter;
+  font-size: 16px;
+}
+
+.page__link {
+  margin: 184px auto;  
+  color: #FF6838;
+  text-decoration: none;
+  line-height: 17px;
+  transition: 0.3s ease;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.page__link:hover {
+    transform: scale(1.1);
+    opacity: 0.7;
+}

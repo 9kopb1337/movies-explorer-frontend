@@ -1,0 +1,120 @@
+.header {
+    margin: auto;
+    max-width: 1140px;
+    max-height: 74px;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__logo {
+    margin: 18px 70px 18px 0;
+    width: 38px;
+    height: 38px;
+}
+
+.header__link {
+    color: #FFF;
+    line-height: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.header__links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header__button {
+    width: 76px;
+    height: 32px;
+    border-radius: 3px;
+    border: none;
+    background: #3DDC84;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #000;
+    line-height: 16px;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.header__button-account {
+    width: 76px;
+    height: 32px;
+    border-radius: 20px;
+    border: none;
+    background: #313131;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    color: #fff;
+    line-height: 16px;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.header__info {
+    align-self: center;
+}
+
+.header__button-menu {
+    margin: 0;
+    background-image: url('/src/images/icon__COLOR_icon-main.svg');
+    background-color: #202020;
+    width: 44px;
+    height: 44px;
+    display: none;
+    border: none;
+    cursor: pointer;
+    display: none;
+    align-self: center;
+    padding: 0;
+}
+
+@media (max-width: 1200px) {
+    .header__container {
+        margin: 0px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header__button-menu {
+        display: flex;
+    }
+
+    .header__button-account {
+        display: none;
+    }
+
+    .header__link {
+        display: none;
+    }
+
+    .header__container {
+        margin: 0px 30px;
+    }
+}
+
+@media (max-width: 540px) {
+    .header {
+        max-height: 74px;
+    }
+
+    .header__container {
+        margin: 0px 14px;
+    }
+}
