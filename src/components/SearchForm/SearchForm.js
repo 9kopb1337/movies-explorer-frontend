@@ -3,9 +3,9 @@ import './SearchForm.css';
 
 export default function SearchForm() {
   return (
-    <div className='search'>
+    <section className='search'>
       <form className='search__form'>
-        <input className='search__input' type='text' placeholder='Фильм' />
+        <input className='search__input' type='text' placeholder='Фильм' required/>
         <button className='search__button' />
       </form>
       <div className='switch'>
@@ -13,6 +13,6 @@ export default function SearchForm() {
         <label className='switch__label'>Короткометражки</label>
       </div>
       <div className='search__underline' />
-    </div>
+    </section>
   );
 }

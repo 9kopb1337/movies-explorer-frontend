@@ -7,7 +7,6 @@
   margin-bottom: 50px;
   line-height: 20px;
   color: #8b8b8b;
-  font-family: Inter;
   font-weight: 400;
   font-size: 18px;
 }
@@ -21,17 +20,15 @@
 }
 
 .portfolio__projects li {
+  align-items: center;
   margin: 0;
   padding: 0;
   list-style: none;
   letter-spacing: -1.2px;
   color: #fff;
   border-bottom: 1px solid #E6E6E6;
-  display: flex;
-  justify-content: space-between;
   height: 50px;
   padding-bottom: 20px;
-  font-family: Inter;
   font-weight: 400;
   font-size: 30px;
 }
@@ -41,6 +38,9 @@
   text-decoration: none;
   transition: 0.2s ease;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .portfolio__link:hover {
@@ -49,6 +49,12 @@
 
 .portfolio__projects li:last-of-type {
   border-bottom: none;
+}
+
+.arrow {
+  background: url(../../images/portfolio-arrow.svg) no-repeat center;
+  width: 29px;
+  height: 60px;
 }
 
 @media (max-width: 1300px) {
@@ -66,27 +72,25 @@
     color: #A0A0A0;
     line-height: 20px;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
   }
 
   .portfolio__projects li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    color: #fff;
-    border-bottom: 1px solid #E6E6E6;
-    display: flex;
-    justify-content: space-between;
-    height: 50px;
-    color: #FFF;
-    line-height: 28px;
-    letter-spacing: -0.72px;
-    font-family: Inter;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
+    height: 28px;
+    letter-spacing: -0.72px;
+  }
+  .arrow {
+    height: 28px;
+    width: 18px;
+  }
+  .arrow {
+    background: url(../../images/portfolio-arrow.svg) no-repeat center;
+    width: 18px;
+    height: 28px;
   }
 }

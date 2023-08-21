@@ -2,7 +2,6 @@
   margin: 0 auto;
   background-color: #272727;
   max-width: 1200px;
-  min-height: 625px;
   padding: 100px 70px;
 }
 
@@ -14,7 +13,6 @@
   color: #fff;
   border-bottom: 1px solid #dadada;
   padding: 0 0 23px;
-  font-family: Inter;
   font-weight: 400;
   font-size: 22px;
 }
@@ -26,7 +24,6 @@
   text-align: center;
   letter-spacing: -0.04em;
   color: #fff;
-  font-family: Inter;
   font-style: normal;
   font-weight: 400;
   font-size: 50px;
@@ -41,7 +38,6 @@
   text-align: center;
   letter-spacing: -0.04em;
   color: #fff;
-  font-family: Inter;
   font-weight: 400;
   font-size: 14px;
 }
@@ -67,7 +63,6 @@
   text-align: center;
   letter-spacing: -0.04em;
   color: #fff;
-  font-family: Inter;
   font-weight: 400;
   font-size: 14px;
 }

@@ -31,10 +31,14 @@
     text-align: left;
     padding-left: 20px;
     font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
+}
+
+.search__input:focus {
+    outline: none;
+    box-shadow: 0 0 0 1px #fff;
 }
 
 .search__button {
@@ -46,12 +50,13 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: .3s ease;
+    transition: .5s ease;
     padding: 0;
 }
 
 .search__button:hover {
     opacity: 0.8;
+    transition: all 0.2s ease-in-out;
 }
 
 .switch {
@@ -73,6 +78,7 @@
     background-color: #343434;
     width: 36px;
     height: 20px;
+
 }
 
 .switch__checkbox::after {
@@ -108,7 +114,6 @@
 .switch__label {
     color: #FFF;
     line-height: 18px;
-    font-family: Inter;
     font-size: 12px;
     font-style: normal;
     font-weight: 400;

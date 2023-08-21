@@ -20,14 +20,18 @@ export default function Header({ handleLogOut }) {
         <Link to='/'>
           <img className='header__logo' src={logo} alt='лого' />
         </Link>
-        <div className='header__links'>
-          <Link className='header__link' to='/movies'>
-            Фильмы
-          </Link>
-          <Link className='header__link' to='/saved-movies'>
-            Сохраненные фильмы
-          </Link>
-        </div>
+        {isAuthorized ? (
+          <div className='header__links'>
+            <Link className='header__link' to='/movies'>
+              Фильмы
+            </Link>
+            <Link className='header__link' to='/saved-movies'>
+              Сохраненные фильмы
+            </Link>
+          </div>
+        ) : (
+          ''
+        )}
         {isAuthorized ? (
           <Link className='header__info' to='/profile'>
             <button

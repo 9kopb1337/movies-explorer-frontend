@@ -1,8 +1,8 @@
 .profile {
-  margin: 64px auto 0;
+  margin: 74px auto 0;
   display: flex;
   flex-direction: column;
-  width: 410px;
+  max-width: 410px;
 }
 
 .profile__title {
@@ -12,7 +12,6 @@
   color: #fff;
   margin: 0;
   padding: 0;
-  font-family: Inter;
   font-weight: 500;
   font-size: 24px;
 }
@@ -38,7 +37,6 @@
   color: #FFF;
   line-height: normal;
   display: block;
-  font-family: Inter;
   font-size: 11px;
   font-style: normal;
   font-weight: 500;
@@ -53,7 +51,6 @@
   color: #FFF;
   text-align: right;
   line-height: normal;
-  font-family: Inter;
   font-size: 11px;
   font-style: normal;
   font-weight: 400;
@@ -75,7 +72,6 @@
   cursor: pointer;
   color: #fff;
   line-height: normal;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
@@ -87,8 +83,22 @@
   cursor: pointer;
   color: #EE3465;
   line-height: normal;
-  font-family: Inter;
   font-size: 13px;
   font-style: normal;
   font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .profile {
+    margin-top: 236px;
+  }
+}
+
+@media (max-width: 540px) {
+  .profile {
+    margin: 70px 30px 0;
+  }
+  .profile__footer {
+    margin-top: 379px;
+  }
 }

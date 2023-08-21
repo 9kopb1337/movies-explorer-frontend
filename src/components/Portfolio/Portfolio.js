@@ -7,27 +7,36 @@ export default function Portfolio() {
       <h2 className='portfolio__title'>Портфолио</h2>
       <ul className='portfolio__projects'>
         <li>
-          <a className='portfolio__link' href='github.com'>
+          <a
+            className='portfolio__link'
+            href='https://github.com/9kopb1337/how-to-learn'
+            target='_blank'
+            rel='noreferrer'
+          >
             Статичный сайт
-          </a>
-          <a className='portfolio__link' href='github.com'>
-            ↗
+            <span className='arrow'/>
           </a>
         </li>
         <li>
-          <a className='portfolio__link' href='github.com'>
+          <a
+            className='portfolio__link'
+            href='https://github.com/9kopb1337/yet-another-travel'
+            target='_blank'
+            rel='noreferrer'
+          >
             Адаптивный сайт
-          </a>
-          <a className='portfolio__link' href='github.com'>
-            ↗
+            <span className='arrow'/>
           </a>
         </li>
         <li>
-          <a className='portfolio__link' href='github.com'>
+          <a
+            className='portfolio__link'
+            href='https://github.com/9kopb1337/express-mesto-gha'
+            target='_blank'
+            rel='noreferrer'
+          >
             Одностраничное приложение
-          </a>
-          <a className='portfolio__link' href='github.com'>
-            ↗
+            <span className='arrow'/>
           </a>
         </li>
       </ul>

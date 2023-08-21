@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 export default function MovieCardList() {
   const page = useLocation();
   return (
-    <div className='movie-cardlist'>
+    <section className='movie-cardlist'>
       <ul className='movie__list'>
         <MoviesCard />
         <MoviesCard />
@@ -29,6 +29,6 @@ export default function MovieCardList() {
       >
         Ещё
       </button>
-    </div>
+    </section>
   );
 }

@@ -6,11 +6,11 @@ import MovieCardList from '../MovieCardList/MovieCardList';
 
 export default function SavedMovies() {
   return (
-    <>
+    <section>
       <Header />
       <SearchForm />
       <MovieCardList />
       <Footer />
-    </>
+    </section>
   );
 }

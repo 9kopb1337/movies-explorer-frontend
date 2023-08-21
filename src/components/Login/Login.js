@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Login() {
   return (
-    <div className='login'>
+    <section className='login'>
       <div className='login__header'>
         <Link to='/'>
           <img className='login__logo' src={logo} alt='лого' />
@@ -43,6 +43,6 @@ export default function Login() {
           </Link>
         </span>
       </div>
-    </div>
+    </section>
   );
 }

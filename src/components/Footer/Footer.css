@@ -1,5 +1,5 @@
 .footer {
-    margin: 59px auto 20px;
+    margin: 59px auto 0;
     background-color: #202020;
     max-width: 1280px;
 }
@@ -12,7 +12,6 @@
     padding: 20px 0;
     border-bottom: 1px solid #424242;
     margin-bottom: 20px;
-    font-family: Inter;
     font-weight: 400;
     font-size: 13px;
 }
@@ -24,7 +23,6 @@
 
 .footer__copyright {
     line-height: 16px;
-    font-family: Inter;
     font-weight: 400;
     font-size: 13px;
 }
@@ -33,7 +31,6 @@
     line-height: 16px;
     display: flex;
     gap: 20px;
-    font-family: Inter;
     font-weight: 400;
     font-size: 13px;
 }
@@ -50,14 +47,14 @@
 
 @media (max-width: 1300px) {
     .footer {
-        margin: 59px 50px 20px;
+        margin: 59px 50px 0;
         max-width: 1280px;
     }
 }
 
 @media (max-width: 540px) {
     .footer {
-        margin: 79px 10px 20px;
+        margin: 79px 10px 0;
         max-width: 1280px;
     }
 

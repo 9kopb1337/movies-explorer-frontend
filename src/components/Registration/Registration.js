@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Registration() {
   return (
-    <div className='registration'>
+    <section className='registration'>
       <div className='registration__header'>
         <Link to='/'>
           <img className='registration__logo' src={logo} alt='лого' />
@@ -41,17 +41,17 @@ export default function Registration() {
         />
         <span className='registration__error'>Что-то пошло не так...</span>
         <button className='registration__button' type='submit'>
-          Войти
+          Зарегистрироваться
         </button>
       </form>
       <div className='registration__footer'>
         <span>
           Уже зарегистрированы?
           <Link className='registration__link' to='/signin'>
-            Вход
+            Войти
           </Link>
         </span>
       </div>
-    </div>
+    </section>
   );
 }
