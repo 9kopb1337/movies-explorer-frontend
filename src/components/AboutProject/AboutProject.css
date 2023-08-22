@@ -189,6 +189,11 @@
         display: inline;
     }
 
+    .about-project-block {
+        max-width: 550px;
+        margin-bottom: 56px;
+    }
+
     .about__title {
         color: #FFF;
         line-height: normal;
