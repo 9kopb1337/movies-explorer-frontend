@@ -127,3 +127,19 @@
     font-size: 12px;
   }
 }
+
+.login__button_disabled {
+  margin-top: 179px;
+  margin-bottom: 16px;
+  background-color: #F8F8F8;
+  border: none;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #C2C2C2;
+  width: 100%;
+  text-align: center;
+  padding: 13px 0 15px;
+  cursor: pointer;
+}

@@ -80,6 +80,22 @@
   font-size: 14px;
 }
 
+.registration__button_disabled {
+  margin-top: 69px;
+  margin-bottom: 16px;
+  background: #F8F8F8;
+  border: none;
+  border-radius: 3px;
+  line-height: 17px;
+  color: #C2C2C2;
+  width: 100%;
+  text-align: center;
+  padding: 13px 0 15px;
+  pointer-events: none;
+  font-weight: 500;
+  font-size: 14px;
+}
+
 .registration__footer {
   color: #8B8B8B;
   line-height: 17px;

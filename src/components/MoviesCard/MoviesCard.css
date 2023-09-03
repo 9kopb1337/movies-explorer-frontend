@@ -10,10 +10,17 @@
 .movie__description {
     margin-top: 14px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .movie__photo {
+    min-height: 201px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.movie__link {
+    display: block;
     object-fit: cover;
 }
 
@@ -98,5 +105,8 @@
     .movie {
         width: 300px;
         height: 168px;
+    }
+    .movie__photo {
+        min-height: 168px;
     }
 }
