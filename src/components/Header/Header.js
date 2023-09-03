@@ -1,18 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import Navigation from '../Navigation/Navigation';
 
-export default function Header({ handleLogOut }) {
+export default function Header({ isLoggedIn }) {
   //стейт для меню
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  //заглушка для проверки вёрстки кнопки Аккаунт для залогиненного юзверя
-  const isAuthorized = true;
-
   //управление стейтом открытого меню
   const menuHandler = () => setIsMenuOpen(!isMenuOpen);
+
 
   return (
     <header className='header'>
@@ -20,7 +18,7 @@ export default function Header({ handleLogOut }) {
         <Link to='/'>
           <img className='header__logo' src={logo} alt='лого' />
         </Link>
-        {isAuthorized ? (
+        {isLoggedIn ? (
           <div className='header__links'>
             <Link className='header__link' to='/movies'>
               Фильмы
@@ -32,12 +30,11 @@ export default function Header({ handleLogOut }) {
         ) : (
           ''
         )}
-        {isAuthorized ? (
+        {isLoggedIn ? (
           <Link className='header__info' to='/profile'>
             <button
               className='header__button-account'
               type='button'
-              onClick={handleLogOut}
             >
               Аккаунт
             </button>
@@ -54,7 +51,7 @@ export default function Header({ handleLogOut }) {
             </div>
           </>
         )}
-        {isAuthorized && (
+        {isLoggedIn && (
           <button
             className='header__button-menu'
             onClick={menuHandler}

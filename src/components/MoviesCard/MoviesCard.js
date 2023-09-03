@@ -1,35 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './MoviesCard.css';
-import moviePhoto from '../../images/pic__COLOR_pic.png';
-import { useLocation } from 'react-router-dom';
+import { durationMovieConverter } from '../../utils/utils';
 
-export default function MoviesCard() {
-  const [isSaved, setIsSaved] = useState(false);
-  const saveMovie = () => setIsSaved(!isSaved);
-  const savedMovies = useLocation();
+export default function MoviesCard({
+  movie,
+  isSavedMovies,
+  savedMovies,
+  saved,
+  handleLikeMovie,
+  onRemoveMovie,
+}) {
+
+  function onRemove() {
+    onRemoveMovie(movie);
+  }
+
+  function onMovieClick() {
+    if (saved) {
+      onRemoveMovie(savedMovies.filter((item) => item.movieId === movie.id)[0]);
+    } else {
+      handleLikeMovie(movie);
+    }
+  }
+  
   return (
     <div className='movie'>
-      {savedMovies.pathname === '/saved-movies' ? (
-        <button className='movie__favorite_cross' />
-      ) : isSaved ? (
-        <button
-          className='movie__favorite_red'
-          onClick={saveMovie}
-          type='checkbox'
-        />
-      ) : (
-        <button
+      {isSavedMovies ? (
+        <button className='movie__favorite_cross' onClick={onRemove} />
+      ) : (saved ?
+        (<button className='movie__favorite_red' onClick={onMovieClick}/>) : (<button
           className='movie__favorite_gray'
-          onClick={saveMovie}
+          onClick={onMovieClick}
           type='checkbox'
         >
           Сохранить
-        </button>
+        </button>)
       )}
-      <img className='movie__photo' src={moviePhoto} alt='movie' />
+      <img
+        onClick={(e) => window.open(`${movie.trailerLink}`, '_blank')}
+        className='movie__photo'
+        src={
+          isSavedMovies
+            ? movie.image
+            : `https://api.nomoreparties.co/${movie.image.url}`
+        }
+        alt={`Обложка фильма: ${movie.nameRU}`}
+      />
       <div className='movie__description'>
-        <h2 className='movie__name'>Баския: Взрыв реальности</h2>
-        <p className='movie__duration'>1ч 17м</p>
+        <h2 className='movie__name'>{movie.nameRU}</h2>
+        <p className='movie__duration'>
+          {durationMovieConverter(movie.duration)}
+        </p>
       </div>
     </div>
   );
