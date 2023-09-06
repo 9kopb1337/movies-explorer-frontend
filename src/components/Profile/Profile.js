@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Header from '../Header/Header';
 import './Profile.css';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import useForm from '../../hooks/useForm';
 
-export default function Profile({ isLoggedIn, logOut, handlePatchProfile }) {
+export default function Profile({ isLoggedIn, logOut, onUpdateProfile }) {
   const { enteredValues, isError, isFormValid, handleChangeInput, resetForm } =
     useForm();
   const currentUser = useContext(CurrentUserContext);
@@ -12,7 +12,7 @@ export default function Profile({ isLoggedIn, logOut, handlePatchProfile }) {
 
   function onSubmitUserForm(e) {
     e.preventDefault();
-    handlePatchProfile({
+    onUpdateProfile({
       name: enteredValues.name,
       email: enteredValues.email,
     });
@@ -73,7 +73,7 @@ export default function Profile({ isLoggedIn, logOut, handlePatchProfile }) {
         </form>
         <div className='profile__footer'>
           <button
-          onClick={onSubmitUserForm}
+            onClick={onSubmitUserForm}
             type='submit'
             className={
               isFormValid && !lastDetails
