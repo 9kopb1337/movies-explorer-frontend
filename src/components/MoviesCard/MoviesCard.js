@@ -12,29 +12,31 @@ export default function MoviesCard({
 }) {
 
   function onRemove() {
-    onRemoveMovie(movie);
+    onRemoveMovie(movie);    
   }
 
   function onMovieClick() {
     if (saved) {
-      onRemoveMovie(savedMovies.filter((item) => item.movieId === movie.id)[0]);
+      onRemoveMovie(savedMovies.filter((m) => m.movieId === movie.id)[0]);
     } else {
       handleLikeMovie(movie);
     }
   }
-  
+
   return (
     <div className='movie'>
       {isSavedMovies ? (
-        <button className='movie__favorite_cross' onClick={onRemove} />
-      ) : (saved ?
-        (<button className='movie__favorite_red' onClick={onMovieClick}/>) : (<button
+        <button className='movie__favorite_cross' type='checkbox' onClick={onRemove} />
+      ) : saved && !isSavedMovies ? (
+        <button className='movie__favorite_red' type='checkbox' onClick={onMovieClick} />
+      ) : (
+        <button
           className='movie__favorite_gray'
           onClick={onMovieClick}
           type='checkbox'
         >
           Сохранить
-        </button>)
+        </button>
       )}
       <img
         onClick={(e) => window.open(`${movie.trailerLink}`, '_blank')}

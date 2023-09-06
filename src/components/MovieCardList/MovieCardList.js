@@ -17,6 +17,7 @@ export default function MovieCardList({
 }) {
   const [displayedMovies, setDisplayedMovies] = useState(0);
   const { pathname } = useLocation();
+
   function getMovieFromSaved(savedMovies, movie) {
     return savedMovies.find((savedMovie) => savedMovie.movieId === movie.id);
   }
@@ -29,6 +30,17 @@ export default function MovieCardList({
       setDisplayedMovies(8);
     } else {
       setDisplayedMovies(5);
+    }
+  }
+
+  function expandMoviesDisplay() {
+    const display = window.innerWidth;
+    if (display >= 1280) {
+      setDisplayedMovies(displayedMovies + NEXT_PC_SCREEN_MOVIES);
+    } else if (display >= 768) {
+      setDisplayedMovies(displayedMovies + NEXT_TABLET_SCREEN_MOVIES);
+    } else {
+      setDisplayedMovies(displayedMovies + NEXT_MOBILE_SCREEN_MOVIES);
     }
   }
 
@@ -49,17 +61,6 @@ export default function MovieCardList({
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  function expandMoviesDisplay() {
-    const display = window.innerWidth;
-    if (display >= 1278) {
-      setDisplayedMovies(displayedMovies + NEXT_PC_SCREEN_MOVIES);
-    } else if (display >= 768) {
-      setDisplayedMovies(displayedMovies + NEXT_TABLET_SCREEN_MOVIES);
-    } else {
-      setDisplayedMovies(displayedMovies + NEXT_MOBILE_SCREEN_MOVIES);
-    }
-  }
 
   return (
     <section className='movie-cardlist'>

@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Main from '../Main/Main';
-import {
-  Routes,
-  Route,
-  useNavigate,
-  Navigate,
-} from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import NotFoundPage from '../NotFoundPage/NotFound';
 import './App.css';
 import Registration from '../Registration/Registration';
@@ -13,65 +8,37 @@ import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import CurrentUserContext from '../../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import * as mainApi from '../../utils/MainApi';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 export default function App() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+  const [infoTooltip, setInfoTooltip] = useState(false);
+  const [succes, setSucces] = useState(false);
 
-  useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      console.log(jwt);
-      mainApi
-        .getUsersContent(jwt)
-        .then((res) => {
-          if (res) {
-            localStorage.removeItem('allMovies');
-            setIsLoggedIn(true);
-            console.log(jwt);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      mainApi
-        .getProfileInfo()
-        .then((profileInfo) => {
-          setCurrentUser(profileInfo);
-          console.log(profileInfo);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      mainApi
-        .getSavedMovies()
-        .then((movies) => {
-          setSavedMovies(movies.reverse());
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [isLoggedIn]);
+  function closeInfoTooltip() {
+    setInfoTooltip(false);
+  }
 
   function handleRegistration({ name, email, password }) {
+    
     mainApi
       .register(name, email, password)
       .then(() => {
+        setSucces(true);
+        setInfoTooltip(true);
         handleAuthorization({ email, password });
+        navigate('/movies');
       })
       .catch((err) => {
         console.log(err);
+        setSucces(false);
+        setInfoTooltip(true);
       });
   }
 
@@ -81,13 +48,15 @@ export default function App() {
       .then((res) => {
         if (res) {
           localStorage.setItem('jwt', res.token);
+          navigate('/movies', { replace: true });          
           setIsLoggedIn(true);
-          navigate('/movies', { replace: true });
         }
       })
       .catch((err) => {
         console.log(err);
-      });
+        setSucces(false);
+        setInfoTooltip(true);
+      })
   }
 
   function handlePatchProfile(newProfileInfo) {
@@ -95,9 +64,6 @@ export default function App() {
       .patchProfileInfo(newProfileInfo)
       .then((data) => {
         setCurrentUser(data);
-        console.log(data);
-        console.log(newProfileInfo);
-        console.log(currentUser);
       })
       .catch((err) => {
         console.log(err);
@@ -111,22 +77,11 @@ export default function App() {
     }
   }
 
-  const handleLogOut = () => {
-    setIsLoggedIn(false);
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('movies');
-    localStorage.removeItem('movieSearch');
-    localStorage.removeItem('shortMovies');
-    localStorage.removeItem('allMovies');
-    localStorage.clear();
-    navigate('/');
-  };
-
   function handleLikeMovie(movie) {
     mainApi
       .saveMovie(movie)
       .then((newMovie) => {
-        setSavedMovies([ newMovie, ...savedMovies ]);
+        setSavedMovies([newMovie, ...savedMovies]);
       })
       .catch((err) => {
         console.log(err);
@@ -138,15 +93,55 @@ export default function App() {
     mainApi
       .removeMovie(movie._id)
       .then(() => {
-        setSavedMovies((movie) => {
-          movie.filter((item) => item._id !== movie._id);
-        });
+        setSavedMovies((state) => 
+          state.filter((item) => item._id !== movie._id)
+        );
       })
       .catch((err) => {
         console.log(err);
         handleAuthorizationError(err);
       });
   }
+
+  const handleLogOut = () => {
+    setIsLoggedIn(false);    
+    localStorage.clear();
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('allMovies');
+    localStorage.removeItem('movieSearch');
+    localStorage.removeItem('movies');
+    localStorage.removeItem('shortMovies');
+    navigate('/');
+  };
+
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) {
+      mainApi
+        .getUsersContent(jwt)
+        .then((res) => {
+          localStorage.removeItem('allMovies');
+          setIsLoggedIn(true);
+        })
+        .catch((err) => {
+          console.log(122, err);
+        });
+    }
+  }, []);
+
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (isLoggedIn && jwt) {
+      Promise.all([mainApi.getProfileInfo(), mainApi.getSavedMovies()])
+        .then(([user, movies]) => {
+          setCurrentUser({ name: user.name, email: user.email });
+          setSavedMovies(movies.reverse());
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -205,11 +200,12 @@ export default function App() {
                 isLoggedIn={isLoggedIn}
                 element={Profile}
                 logOut={handleLogOut}
-                handlePatchProfile={handlePatchProfile}
+                onUpdateProfile={handlePatchProfile}
               />
             }
           />
         </Routes>
+        <InfoTooltip onClickClose={closeInfoTooltip} succes={succes} isOpen={infoTooltip} />
       </div>
     </CurrentUserContext.Provider>
   );

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './SearchForm.css';
-import { useLocation } from 'react-router-dom';
 import Switch from '../Switch/Switch';
 
 export default function SearchForm({
@@ -8,7 +7,6 @@ export default function SearchForm({
   searchAndFilterMovies,
   onFilterMovies,
 }) {
-  const location = useLocation();
   const [searchRequest, setSearchRequest] = useState('');
   const [searchError, setSearchError] = useState(false);
 
@@ -27,13 +25,11 @@ export default function SearchForm({
   }
 
   useEffect(() => {
-    if (
-      (location.pathname = '/movies' && localStorage.getItem('movieSearch'))
-    ) {
+    if (localStorage.getItem('movieSearch')) {
       const localSearchRequest = localStorage.getItem('movieSearch');
       setSearchRequest(localSearchRequest);
     }
-  }, [location]);
+  }, []);
 
   return (
     <section className='search'>

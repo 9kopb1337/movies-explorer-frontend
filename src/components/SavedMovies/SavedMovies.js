@@ -6,17 +6,17 @@ import MovieCardList from '../MovieCardList/MovieCardList';
 import { filterMovies, filterShortMovies } from '../../utils/utils';
 
 export default function SavedMovies({ isLoggedIn, savedMovies, onRemoveMovie }) {
-  const [notFound, setNotFound] = useState(false);
-  const [searchRequest, setSearchRequest] = useState('');
   const [filteredMovies, setFilteredMovies] = useState(savedMovies);
+  const [searchRequest, setSearchRequest] = useState('');
   const [shortMovies, setShortMovies] = useState(false);
-
-  function handleShortMovieToggle() {
-    setShortMovies(!shortMovies);
-  }
+  const [notFound, setNotFound] = useState(false);
 
   function searchAndFilterMovies(request) {
     setSearchRequest(request);
+  }
+
+  function handleShortMovieToggle() {
+    setShortMovies(!shortMovies);
   }
 
   useEffect(() => {

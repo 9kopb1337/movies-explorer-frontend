@@ -1,4 +1,4 @@
-import { BASE_URL, TEST_URL } from './constants';
+import { BASE_URL } from './constants';
 import { checkRes } from './utils';
 
 
@@ -83,9 +83,9 @@ export const saveMovie = (data) => {
       duration: data.duration,
       year: data.year,
       description: data.description,
-      image: 'https://api.nomoreparties.co/' + data.image.url,
+      image: `https://api.nomoreparties.co/${data.image.url}`,
       trailerLink: data.trailerLink,
-      thumbnail: 'https://api.nomoreparties.co/' + data.image.formats.thumbnail.url,
+      thumbnail: `https://api.nomoreparties.co/${data.image.formats.thumbnail.url}`,
       movieId: data.id,
       nameRU: data.nameRU || data.nameEN,
       nameEN: data.nameEN || data.nameRU,
@@ -97,6 +97,7 @@ export const removeMovie = (movieId) => {
   return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: 'DELETE',
     headers: {
+      Accept: 'application/json',
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('jwt')}`,
     },
