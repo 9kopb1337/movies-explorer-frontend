@@ -6,3 +6,4 @@ movies-explorer-frontend
 
 ссылка на проект - https://diplom.novch.nomoreparties.sbs/
 
+https://github.com/9kopb1337/movies-explorer-frontend/pull/5
