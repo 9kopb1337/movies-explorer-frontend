@@ -101,6 +101,14 @@
         display: none;
     }
 
+    .header__link_reg {
+        display: block
+    }
+
+    .header__link_log {
+        display: block
+    }
+
     .header__container {
         margin: 0px 30px;
     }

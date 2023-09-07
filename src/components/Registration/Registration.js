@@ -33,8 +33,8 @@ export default function Registration({ onRegister }) {
           className='registration__input'
           name='name'
           type='name'
+          placeholder='Имя'
           required
-          autoComplete='off'
           minLength='2'
           maxLength='30'
           value={enteredValues.name || ''}
@@ -46,8 +46,9 @@ export default function Registration({ onRegister }) {
           className='registration__input'
           name='email'
           type='email'
-          required
-          autoComplete='off'
+          placeholder='Email'
+          required         
+          pattern="\w+@\w+\.\w+"
           value={enteredValues.email || ''}
           onChange={handleChangeInput}
         />
@@ -57,8 +58,8 @@ export default function Registration({ onRegister }) {
           className='registration__input'
           name='password'
           type='password'
+          placeholder='Пароль'
           required
-          autoComplete='off'
           minLength='8'
           value={enteredValues.password || ''}
           onChange={handleChangeInput}

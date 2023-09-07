@@ -119,9 +119,22 @@
     font-weight: 400;
 }
 
+.search__error {
+    align-content: center;
+    margin: 4px 82px;
+    height: 12px;
+    line-height: 12px;
+    color: #EE3465;
+    font-weight: 400;
+    font-size: 10px;
+}
+
 @media (max-width: 1200px) {
     .search__form {
         margin: 0 30px 0;
+    }
+    .search__error {
+        margin: 4px 35px;
     }
 }
 
@@ -130,7 +143,6 @@
         margin: 0 14px 0;
         ;
     }
-
     .search__input {
         min-height: 44px;
     }

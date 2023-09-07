@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import './Navigation.css';
 
 export default function Navigation({ isOpen, onClose }) {
@@ -11,34 +11,34 @@ export default function Navigation({ isOpen, onClose }) {
         <div className='menu__container'>
           <button className='menu__close' onClick={onClose} />
           <div className='menu__open'>
-            <Link
+            <NavLink
               className={
                 page.pathname === '/' ? 'menu-link_active' : 'menu-link'
               }
               to='/'
             >
               Главная
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               className={
                 page.pathname === '/' ? 'menu-link_active' : 'menu-link'
               }
               to='/movies'
             >
               Фильмы
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               className={
                 page.pathname === '/' ? 'menu-link_active' : 'menu-link'
               }
               to='/saved-movies'
             >
               Сохраненные фильмы
-            </Link>
+            </NavLink>
           </div>
-          <Link className='menu__account' to='/profile'>
+          <NavLink className='menu__account' to='/profile'>
             Аккаунт
-          </Link>
+          </NavLink>
         </div>
       </div>
     </div>

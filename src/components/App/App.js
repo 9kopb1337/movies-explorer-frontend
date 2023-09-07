@@ -12,6 +12,8 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import * as mainApi from '../../utils/MainApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import InfoTooltipEdit from '../InfoTooltipEdit/InfoTooltipEdit';
+import InfoTooltipLogin from '../infoTooltipLogin/InfoTooltipLogin';
 
 export default function App() {
   const navigate = useNavigate();
@@ -19,25 +21,30 @@ export default function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [infoTooltip, setInfoTooltip] = useState(false);
-  const [succes, setSucces] = useState(false);
+  const [infoToolTipLogin, setInfoToolTipLogin] = useState(false);
+  const [infoToolTipEdit, setInfoToolTipEdit] = useState(false);
+  const [succesReg, setSuccesReg] = useState(false);
+  const [succesLogin, setSuccesLogin] = useState(false);
+  const [succesEdit, setSuccessEdit] = useState(false);
 
   function closeInfoTooltip() {
     setInfoTooltip(false);
+    setInfoToolTipLogin(false);
+    setInfoToolTipEdit(false);
   }
 
   function handleRegistration({ name, email, password }) {
-    
     mainApi
       .register(name, email, password)
       .then(() => {
-        setSucces(true);
+        setSuccesReg(true);
         setInfoTooltip(true);
         handleAuthorization({ email, password });
         navigate('/movies');
       })
       .catch((err) => {
         console.log(err);
-        setSucces(false);
+        setSuccesReg(false);
         setInfoTooltip(true);
       });
   }
@@ -48,15 +55,17 @@ export default function App() {
       .then((res) => {
         if (res) {
           localStorage.setItem('jwt', res.token);
-          navigate('/movies', { replace: true });          
+          navigate('/movies', { replace: true });
           setIsLoggedIn(true);
+          setSuccesLogin(true);
+          setInfoToolTipLogin(true);
         }
       })
       .catch((err) => {
         console.log(err);
-        setSucces(false);
-        setInfoTooltip(true);
-      })
+        setSuccesLogin(false);
+        setInfoToolTipLogin(true);
+      });
   }
 
   function handlePatchProfile(newProfileInfo) {
@@ -64,6 +73,8 @@ export default function App() {
       .patchProfileInfo(newProfileInfo)
       .then((data) => {
         setCurrentUser(data);
+        setSuccessEdit(true);
+        setInfoToolTipEdit(true);
       })
       .catch((err) => {
         console.log(err);
@@ -93,7 +104,7 @@ export default function App() {
     mainApi
       .removeMovie(movie._id)
       .then(() => {
-        setSavedMovies((state) => 
+        setSavedMovies((state) =>
           state.filter((item) => item._id !== movie._id)
         );
       })
@@ -104,7 +115,7 @@ export default function App() {
   }
 
   const handleLogOut = () => {
-    setIsLoggedIn(false);    
+    setIsLoggedIn(false);
     localStorage.clear();
     localStorage.removeItem('jwt');
     localStorage.removeItem('allMovies');
@@ -130,6 +141,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    localStorage.removeItem('shortMovies');
     const jwt = localStorage.getItem('jwt');
     if (isLoggedIn && jwt) {
       Promise.all([mainApi.getProfileInfo(), mainApi.getSavedMovies()])
@@ -205,7 +217,21 @@ export default function App() {
             }
           />
         </Routes>
-        <InfoTooltip onClickClose={closeInfoTooltip} succes={succes} isOpen={infoTooltip} />
+        <InfoTooltip
+          onClickClose={closeInfoTooltip}
+          succesReg={succesReg}
+          isOpen={infoTooltip}
+        />
+        <InfoTooltipEdit
+          succesEdit={succesEdit}
+          isOpen={infoToolTipEdit}
+          onClickClose={closeInfoTooltip}
+        />
+        <InfoTooltipLogin
+          succesLogin={succesLogin}
+          isOpen={infoToolTipLogin}
+          onClickClose={closeInfoTooltip}
+        />
       </div>
     </CurrentUserContext.Provider>
   );

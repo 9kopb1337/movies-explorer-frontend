@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './SearchForm.css';
 import Switch from '../Switch/Switch';
+import { useLocation } from 'react-router-dom';
 
 export default function SearchForm({
   isShortMovies,
   searchAndFilterMovies,
-  onFilterMovies,
+  onFilterMovies, setDisplayedMovies
 }) {
+  const location = useLocation();
   const [searchRequest, setSearchRequest] = useState('');
   const [searchError, setSearchError] = useState(false);
 
@@ -25,11 +27,11 @@ export default function SearchForm({
   }
 
   useEffect(() => {
-    if (localStorage.getItem('movieSearch')) {
+    if (localStorage.getItem('movieSearch') && location.pathname ==='/movies') {
       const localSearchRequest = localStorage.getItem('movieSearch');
       setSearchRequest(localSearchRequest);
     }
-  }, []);
+  }, [location]);
 
   return (
     <section className='search'>
@@ -37,6 +39,7 @@ export default function SearchForm({
         className='search__form'
         name='search-saved-movie-form'
         onSubmit={onSubmitForm}
+        noValidate
       >
         <input
           className='search__input'
@@ -47,8 +50,9 @@ export default function SearchForm({
           value={searchRequest || ''}
           onChange={handleChangeInput}
         />
-        <button className='search__button' type='submit' />
-      </form>
+        <button className='search__button' type='submit'/>
+      </form>      
+      {searchError ? (<span className='search__error'>Введите название фильма!</span>) : ''}
       <Switch isShortMovies={isShortMovies} onFilterMovies={onFilterMovies} />
       <div className='search__underline' />
     </section>

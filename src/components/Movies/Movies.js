@@ -73,10 +73,10 @@ export default function Movies({
       if(filterMovies.length === 0) {
         console.log('Не найдено фильмов')
       } else {
-        console.log('вот фильмы');
+        console.log(76, 'вот фильмы');
       }
     } else {
-      console.log('вот фильмы');
+      console.log(79, 'вот фильмы');
     }
   }, [filteredMovies]);
 

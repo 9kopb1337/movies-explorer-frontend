@@ -16,3 +16,14 @@ export const ERR_FORBIDDEN = 403;
 export const ERR_NOT_FOUND = 404;
 export const ERR_CONFLICT = 409;
 export const SERVER_ERR = 500;
+
+export const PC_DISPLAY = 1240;
+export const TABLET_DISPLAY = 720;
+
+
+export const SUCCES_REG = 'Поздравляем с успешной регистрацией!';
+export const FAIL_REG = 'Что-то пошло не так, попробуйте еще раз!';
+export const FAIL_SEARCH = 'Поиск фильма не удался!';
+export const SUCCES_LOGIN = 'Авторизация прошла успешно!';
+export const FAIL_LOGIN = 'Не удалось авторизоваться!';
+export const SUCCES_EDIT = 'Поздравляем с успешным изменением данных!';
