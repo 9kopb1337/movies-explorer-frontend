@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
 import './Header.css';
@@ -42,10 +42,10 @@ export default function Header({ isLoggedIn }) {
         ) : (
           <>
             <div className='header__links'>
-              <Link className='header__link' to='/signup'>
+              <Link className='header__link header__link_reg' to='/signup'>
                 Регистрация
               </Link>
-              <Link className='header__link' to='/signin'>
+              <Link className='header__link header__link_log' to='/signin'>
                 <button className='header__button'>Войти</button>
               </Link>
             </div>
