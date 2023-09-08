@@ -67,6 +67,10 @@ export default function MovieCardList({
     };
   }, []);
 
+  useEffect(() => {
+    setDisplayedMoviesCount();
+  }, [movies])
+
   return (
     <section className='movie-cardlist'>
       {pathname === '/saved-movies' ? (

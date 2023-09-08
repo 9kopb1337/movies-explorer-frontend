@@ -159,7 +159,7 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className='app'>
         <Routes>
-          <Route exact path={'/'} element={<Main isLoggedIn={isLoggedIn} />} />
+          <Route path={'/'} element={<Main isLoggedIn={isLoggedIn} />} />
           <Route path={'*'} element={<NotFoundPage />} />
           <Route
             path={'/signup'}
