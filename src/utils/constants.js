@@ -18,7 +18,7 @@ export const ERR_CONFLICT = 409;
 export const SERVER_ERR = 500;
 
 export const PC_DISPLAY = 1240;
-export const TABLET_DISPLAY = 720;
+export const TABLET_DISPLAY = 707;
 
 
 export const SUCCES_REG = 'Поздравляем с успешной регистрацией!';
@@ -27,3 +27,5 @@ export const FAIL_SEARCH = 'Поиск фильма не удался!';
 export const SUCCES_LOGIN = 'Авторизация прошла успешно!';
 export const FAIL_LOGIN = 'Не удалось авторизоваться!';
 export const SUCCES_EDIT = 'Поздравляем с успешным изменением данных!';
+
+export const SHORT_MOVIES = 40;

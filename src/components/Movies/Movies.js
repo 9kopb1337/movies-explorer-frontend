@@ -42,14 +42,6 @@ export default function Movies({
     localStorage.setItem('allMovies', JSON.stringify(movies));
   }
 
-  useEffect(() => {
-    if (localStorage.getItem('shortMovies') === 'true') {
-      setShortMovies(true);
-    } else {
-      setShortMovies(false);
-    }
-  }, []);
-
   function searchAndFilterMovies(query) {
     localStorage.setItem('movieSearch', query);
     localStorage.setItem('shortMovies', shortMovies);
@@ -67,11 +59,19 @@ export default function Movies({
         });
     }
   }
+  
+  useEffect(() => {
+    if (localStorage.getItem('shortMovies') === 'true') {
+      setShortMovies(true);
+    } else {
+      setShortMovies(false);
+    }
+  }, []);
 
   useEffect(() => {
-    if(localStorage.getItem('movieSearch')) {
-      if(filterMovies.length === 0) {
-        console.log('Не найдено фильмов')
+    if (localStorage.getItem('movieSearch')) {
+      if (filterMovies.length === 0) {
+        console.log('Не найдено фильмов');
       } else {
         console.log(76, 'вот фильмы');
       }
@@ -84,13 +84,13 @@ export default function Movies({
     if (localStorage.getItem('movies')) {
       const movies = JSON.parse(localStorage.getItem('movies'));
       setInitialMovies(movies);
-      if(localStorage.getItem('shortMovies') === 'true') {
+      if (localStorage.getItem('shortMovies') === 'true') {
         setFilteredMovies(filterShortMovies(movies));
       } else {
         setFilteredMovies(movies);
       }
     }
-  }, [])
+  }, []);
 
   return (
     <section>

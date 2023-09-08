@@ -6,7 +6,8 @@ import { useLocation } from 'react-router-dom';
 export default function SearchForm({
   isShortMovies,
   searchAndFilterMovies,
-  onFilterMovies, setDisplayedMovies
+  onFilterMovies,
+  displayedMovies
 }) {
   const location = useLocation();
   const [searchRequest, setSearchRequest] = useState('');
