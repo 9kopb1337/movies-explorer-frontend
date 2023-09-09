@@ -12,7 +12,7 @@ export default function Movies({
   isLoading,
   handleLikeMovie,
   savedMovies,
-  onRemoveMovie,
+  onRemoveMovie
 }) {
   const [shortMovies, setShortMovies] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
@@ -70,7 +70,7 @@ export default function Movies({
 
   useEffect(() => {
     if (localStorage.getItem('movieSearch')) {
-      if (filterMovies.length === 0) {
+      if (filteredMovies.length === 0) {
         console.log('Не найдено фильмов');
       } else {
         console.log(76, 'вот фильмы');
@@ -99,6 +99,7 @@ export default function Movies({
         searchAndFilterMovies={searchAndFilterMovies}
         shortMovies={shortMovies}
         onFilterMovies={handleShortMovieToggle}
+        filteredMovies={filteredMovies}
       />
       {isLoading ? (
         <Preloader />

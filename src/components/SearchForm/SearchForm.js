@@ -6,8 +6,7 @@ import { useLocation } from 'react-router-dom';
 export default function SearchForm({
   isShortMovies,
   searchAndFilterMovies,
-  onFilterMovies,
-  displayedMovies
+  onFilterMovies, filteredMovies
 }) {
   const location = useLocation();
   const [searchRequest, setSearchRequest] = useState('');
@@ -28,7 +27,10 @@ export default function SearchForm({
   }
 
   useEffect(() => {
-    if (localStorage.getItem('movieSearch') && location.pathname ==='/movies') {
+    if (
+      localStorage.getItem('movieSearch') &&
+      location.pathname === '/movies'
+    ) {
       const localSearchRequest = localStorage.getItem('movieSearch');
       setSearchRequest(localSearchRequest);
     }
@@ -51,9 +53,15 @@ export default function SearchForm({
           value={searchRequest || ''}
           onChange={handleChangeInput}
         />
-        <button className='search__button' type='submit'/>
+        <button className='search__button' type='submit' />
       </form>      
-      {searchError ? (<span className='search__error'>Введите название фильма!</span>) : ''}
+      {searchError ? (
+        <span className='search__error'>Введите название фильма!</span>
+      ) : filteredMovies.length === 0 ? (
+        <span className='search__error'>Ничего не найдено!</span>
+      ) : (
+        ''
+      )}
       <Switch isShortMovies={isShortMovies} onFilterMovies={onFilterMovies} />
       <div className='search__underline' />
     </section>
