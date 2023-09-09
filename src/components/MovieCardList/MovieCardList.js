@@ -69,10 +69,10 @@ export default function MovieCardList({
 
   useEffect(() => {
     setDisplayedMoviesCount();
-  }, [movies])
+  }, [movies]);
 
   return (
-    <section className='movie-cardlist'>
+    <section className='movie-cardlist'>      
       {pathname === '/saved-movies' ? (
         <ul className='movie__list'>
           {movies.map((movie) => {
