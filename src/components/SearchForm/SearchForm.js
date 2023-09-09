@@ -57,7 +57,7 @@ export default function SearchForm({
       </form>      
       {searchError ? (
         <span className='search__error'>Введите название фильма!</span>
-      ) : filteredMovies.length === 0 ? (
+      ) : filteredMovies.length === 0 && searchRequest.length !== 0 ? (
         <span className='search__error'>Ничего не найдено!</span>
       ) : (
         ''

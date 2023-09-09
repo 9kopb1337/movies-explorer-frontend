@@ -38,6 +38,7 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onRemoveMovie }) 
       <SearchForm
         onFilterMovies={handleShortMovieToggle}
         searchAndFilterMovies={searchAndFilterMovies}
+        filteredMovies={filteredMovies}
       />
       <MovieCardList
         movies={filteredMovies}
