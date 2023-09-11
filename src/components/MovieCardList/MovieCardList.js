@@ -12,6 +12,7 @@ import {
   TABLET_SCREEN,
   MOBILE_SCREEN,
 } from '../../utils/constants';
+import Preloader from '../Preloader/Preloader';
 
 export default function MovieCardList({
   movies,
@@ -19,6 +20,7 @@ export default function MovieCardList({
   savedMovies,
   handleLikeMovie,
   onRemoveMovie,
+  preLoader,
 }) {
   const [displayedMovies, setDisplayedMovies] = useState(0);
   const { pathname } = useLocation();
@@ -72,54 +74,59 @@ export default function MovieCardList({
   }, [movies]);
 
   return (
-    <section className='movie-cardlist'>      
-      {pathname === '/saved-movies' ? (
-        <ul className='movie__list'>
-          {movies.map((movie) => {
-            return (
-              <MoviesCard
-                key={isSavedMovies ? movie._id : movie.id}
-                saved={getMovieFromSaved(savedMovies, movie)}
-                movies={movies}
-                movie={movie}
-                handleLikeMovie={handleLikeMovie}
-                isSavedMovies={isSavedMovies}
-                onRemoveMovie={onRemoveMovie}
-                savedMovies={savedMovies}
-              />
-            );
-          })}
-        </ul>
-      ) : (
+    <section className='movie-cardlist'>
+      {preLoader && <Preloader />}
+      {!preLoader && (
         <>
-          <ul className='movie__list'>
-            {movies.slice(0, displayedMovies).map((movie) => {
-              return (
-                <MoviesCard
-                  key={isSavedMovies ? movie._id : movie.id}
-                  saved={getMovieFromSaved(savedMovies, movie)}
-                  movies={movies}
-                  movie={movie}
-                  handleLikeMovie={handleLikeMovie}
-                  isSavedMovies={isSavedMovies}
-                  onRemoveMovie={onRemoveMovie}
-                  savedMovies={savedMovies}
-                />
-              );
-            })}
-          </ul>
-          {movies.length > displayedMovies ? (
-            <button
-              onClick={expandMoviesDisplay}
-              className={`movies__button${
-                pathname === '/saved-movies' ? '_hidden' : ''
-              }`}
-              type='button'
-            >
-              Ещё
-            </button>
+          {pathname === '/saved-movies' ? (
+            <ul className='movie__list'>
+              {movies.map((movie) => {
+                return (
+                  <MoviesCard
+                    key={isSavedMovies ? movie._id : movie.id}
+                    saved={getMovieFromSaved(savedMovies, movie)}
+                    movies={movies}
+                    movie={movie}
+                    handleLikeMovie={handleLikeMovie}
+                    isSavedMovies={isSavedMovies}
+                    onRemoveMovie={onRemoveMovie}
+                    savedMovies={savedMovies}
+                  />
+                );
+              })}
+            </ul>
           ) : (
-            ''
+            <>
+              <ul className='movie__list'>
+                {movies.slice(0, displayedMovies).map((movie) => {
+                  return (
+                    <MoviesCard
+                      key={isSavedMovies ? movie._id : movie.id}
+                      saved={getMovieFromSaved(savedMovies, movie)}
+                      movies={movies}
+                      movie={movie}
+                      handleLikeMovie={handleLikeMovie}
+                      isSavedMovies={isSavedMovies}
+                      onRemoveMovie={onRemoveMovie}
+                      savedMovies={savedMovies}
+                    />
+                  );
+                })}
+              </ul>
+              {movies.length > displayedMovies ? (
+                <button
+                  onClick={expandMoviesDisplay}
+                  className={`movies__button${
+                    pathname === '/saved-movies' ? '_hidden' : ''
+                  }`}
+                  type='button'
+                >
+                  Ещё
+                </button>
+              ) : (
+                ''
+              )}
+            </>
           )}
         </>
       )}
