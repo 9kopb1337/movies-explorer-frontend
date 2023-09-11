@@ -39,6 +39,7 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onRemoveMovie }) 
         onFilterMovies={handleShortMovieToggle}
         searchAndFilterMovies={searchAndFilterMovies}
         filteredMovies={filteredMovies}
+        notFound={notFound}
       />
       <MovieCardList
         movies={filteredMovies}

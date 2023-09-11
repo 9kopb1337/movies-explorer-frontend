@@ -26,6 +26,7 @@ export default function App() {
   const [succesReg, setSuccesReg] = useState(false);
   const [succesLogin, setSuccesLogin] = useState(false);
   const [succesEdit, setSuccessEdit] = useState(false);
+  const [preLoader, setPreLoader] = useState(false);
 
   function closeInfoTooltip() {
     setInfoTooltip(false);
@@ -50,6 +51,7 @@ export default function App() {
   }
 
   function handleAuthorization({ email, password }) {
+    setPreLoader(true);
     mainApi
       .authorize(email, password)
       .then((res) => {
@@ -65,6 +67,8 @@ export default function App() {
         console.log(err);
         setSuccesLogin(false);
         setInfoToolTipLogin(true);
+      }).finally(() => {
+        setPreLoader(false);
       });
   }
 
@@ -125,9 +129,10 @@ export default function App() {
     navigate('/');
   };
 
+  //добавил isLoggedIn чтобы не сыпалась 401 ошибка с бэка
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-    if (jwt) {
+    if (jwt && isLoggedIn) { 
       mainApi
         .getUsersContent(jwt)
         .then((res) => {
@@ -167,7 +172,7 @@ export default function App() {
               isLoggedIn ? (
                 <Navigate to='/movies' replace />
               ) : (
-                <Registration onRegister={handleRegistration} />
+                <Registration preLoader={preLoader} onRegister={handleRegistration} />
               )
             }
           />
@@ -177,7 +182,7 @@ export default function App() {
               isLoggedIn ? (
                 <Navigate to='/movies' replace />
               ) : (
-                <Login onAuthorization={handleAuthorization} />
+                <Login preLoader={preLoader} onAuthorization={handleAuthorization} />
               )
             }
           />

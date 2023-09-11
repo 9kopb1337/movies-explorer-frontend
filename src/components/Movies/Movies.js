@@ -17,6 +17,8 @@ export default function Movies({
   const [shortMovies, setShortMovies] = useState(false);
   const [initialMovies, setInitialMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [notFound, setNotFound] = useState(false);
+  const [preLoader, setPreLoader] = useState(false);
 
   function handleShortMovieToggle() {
     setShortMovies(!shortMovies);
@@ -49,6 +51,7 @@ export default function Movies({
       const movies = JSON.parse(localStorage.getItem('allMovies'));
       updateFilteredMoviesList(movies, query, shortMovies);
     } else {
+      setPreLoader(true);
       movies
         .getMovies()
         .then((moviesData) => {
@@ -56,6 +59,8 @@ export default function Movies({
         })
         .catch((err) => {
           console.log(err);
+        }).finally(() => {
+          setPreLoader(false);
         });
     }
   }
@@ -68,17 +73,21 @@ export default function Movies({
     }
   }, []);
 
-  /*useEffect(() => {
+  useEffect(() => {
     if (localStorage.getItem('movieSearch')) {
       if (filteredMovies.length === 0) {
         console.log('Не найдено фильмов');
+        setNotFound(true);
+        console.log(notFound);
       } else {
         console.log(76, 'вот фильмы');
+        setNotFound(false);
+        console.log(notFound);
       }
     } else {
       console.log(79, 'вот фильмы');
     }
-  }, [filteredMovies]);*/
+  }, [filteredMovies, notFound]);
 
   useEffect(() => {
     if (localStorage.getItem('movies')) {
@@ -100,6 +109,7 @@ export default function Movies({
         shortMovies={shortMovies}
         onFilterMovies={handleShortMovieToggle}
         filteredMovies={filteredMovies}
+        notFound={notFound}
       />
       {isLoading ? (
         <Preloader />
@@ -110,6 +120,8 @@ export default function Movies({
           savedMovies={savedMovies}
           handleLikeMovie={handleLikeMovie}
           onRemoveMovie={onRemoveMovie}
+          notFound={notFound}
+          preLoader={preLoader}
         />
       )}
       <Footer />

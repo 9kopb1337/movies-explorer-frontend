@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 export default function SearchForm({
   isShortMovies,
   searchAndFilterMovies,
-  onFilterMovies, filteredMovies
+  onFilterMovies, notFound
 }) {
   const location = useLocation();
   const [searchRequest, setSearchRequest] = useState('');
@@ -54,12 +54,10 @@ export default function SearchForm({
           onChange={handleChangeInput}
         />
         <button className='search__button' type='submit' />
-      </form>      
+      </form>
       {searchError ? (
-        <span className='search__error'>Введите название фильма!</span>
-      ) : filteredMovies.length === 0 && searchRequest.length !== 0 ? (
-        <span className='search__error'>Ничего не найдено!</span>
-      ) : (
+        <span className='search__error'>Нужно ввести ключевое слово!</span>
+      ) : notFound ? <span className='search__error'>Ничего не найдено!</span> : (
         ''
       )}
       <Switch isShortMovies={isShortMovies} onFilterMovies={onFilterMovies} />
