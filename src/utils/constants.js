@@ -1,4 +1,4 @@
-export const TEST_URL = 'http://localhost:3000';
+//export const TEST_URL = 'http://localhost:3000';
 export const BASE_URL = 'https://api.diplom.novch.nomoreparties.sbs';
 export const MOVIES_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 
