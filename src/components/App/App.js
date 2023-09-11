@@ -129,10 +129,10 @@ export default function App() {
     navigate('/');
   };
 
-  //добавил isLoggedIn чтобы не сыпалась 401 ошибка с бэка
+ 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-    if (jwt && isLoggedIn) { 
+    if (jwt) { 
       mainApi
         .getUsersContent(jwt)
         .then((res) => {

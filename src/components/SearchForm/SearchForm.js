@@ -4,9 +4,10 @@ import Switch from '../Switch/Switch';
 import { useLocation } from 'react-router-dom';
 
 export default function SearchForm({
-  isShortMovies,
+  shortMovies,
   searchAndFilterMovies,
-  onFilterMovies, notFound
+  onFilterMovies,
+  notFound,
 }) {
   const location = useLocation();
   const [searchRequest, setSearchRequest] = useState('');
@@ -57,10 +58,12 @@ export default function SearchForm({
       </form>
       {searchError ? (
         <span className='search__error'>Нужно ввести ключевое слово!</span>
-      ) : notFound ? <span className='search__error'>Ничего не найдено!</span> : (
+      ) : notFound ? (
+        <span className='search__error'>Ничего не найдено!</span>
+      ) : (
         ''
       )}
-      <Switch isShortMovies={isShortMovies} onFilterMovies={onFilterMovies} />
+      <Switch shortMovies={shortMovies} onFilterMovies={onFilterMovies} />
       <div className='search__underline' />
     </section>
   );

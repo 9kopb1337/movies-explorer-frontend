@@ -76,16 +76,10 @@ export default function Movies({
   useEffect(() => {
     if (localStorage.getItem('movieSearch')) {
       if (filteredMovies.length === 0) {
-        console.log('Не найдено фильмов');
         setNotFound(true);
-        console.log(notFound);
       } else {
-        console.log(76, 'вот фильмы');
         setNotFound(false);
-        console.log(notFound);
       }
-    } else {
-      console.log(79, 'вот фильмы');
     }
   }, [filteredMovies, notFound]);
 
