@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Main from '../Main/Main';
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import NotFoundPage from '../NotFoundPage/NotFound';
 import './App.css';
+import Header from '../Header/Header';
 import Registration from '../Registration/Registration';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
@@ -14,9 +15,12 @@ import * as mainApi from '../../utils/MainApi';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import InfoTooltipEdit from '../InfoTooltipEdit/InfoTooltipEdit';
 import InfoTooltipLogin from '../infoTooltipLogin/InfoTooltipLogin';
+import Footer from '../Footer/Footer';
 
 export default function App() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const path = location.pathname;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
@@ -67,7 +71,8 @@ export default function App() {
         console.log(err);
         setSuccesLogin(false);
         setInfoToolTipLogin(true);
-      }).finally(() => {
+      })
+      .finally(() => {
         setPreLoader(false);
       });
   }
@@ -129,15 +134,15 @@ export default function App() {
     navigate('/');
   };
 
- 
   useEffect(() => {
     const jwt = localStorage.getItem('jwt');
-    if (jwt) { 
+    if (jwt) {
       mainApi
         .getUsersContent(jwt)
         .then((res) => {
           localStorage.removeItem('allMovies');
           setIsLoggedIn(true);
+          navigate(path);
         })
         .catch((err) => {
           console.log(122, err);
@@ -164,7 +169,16 @@ export default function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className='app'>
         <Routes>
-          <Route path={'/'} element={<Main isLoggedIn={isLoggedIn} />} />
+          <Route
+            path={'/'}
+            element={
+              <>
+                <Header isLoggedIn={isLoggedIn} />
+                <Main />
+                <Footer />
+              </>
+            }
+          />
           <Route path={'*'} element={<NotFoundPage />} />
           <Route
             path={'/signup'}
@@ -172,7 +186,10 @@ export default function App() {
               isLoggedIn ? (
                 <Navigate to='/movies' replace />
               ) : (
-                <Registration preLoader={preLoader} onRegister={handleRegistration} />
+                <Registration
+                  preLoader={preLoader}
+                  onRegister={handleRegistration}
+                />
               )
             }
           />
@@ -182,7 +199,10 @@ export default function App() {
               isLoggedIn ? (
                 <Navigate to='/movies' replace />
               ) : (
-                <Login preLoader={preLoader} onAuthorization={handleAuthorization} />
+                <Login
+                  preLoader={preLoader}
+                  onAuthorization={handleAuthorization}
+                />
               )
             }
           />
@@ -190,8 +210,9 @@ export default function App() {
             path={'/movies'}
             element={
               <ProtectedRoute
-                element={Movies}
+                path='/movies'                
                 isLoggedIn={isLoggedIn}
+                element={Movies}
                 handleLikeMovie={handleLikeMovie}
                 onRemoveMovie={handleRemoveMovie}
                 savedMovies={savedMovies}
@@ -202,8 +223,9 @@ export default function App() {
             path={'/saved-movies'}
             element={
               <ProtectedRoute
-                element={SavedMovies}
+                path='/saved-movies'                
                 isLoggedIn={isLoggedIn}
+                element={SavedMovies}
                 handleLikeMovie={handleLikeMovie}
                 onRemoveMovie={handleRemoveMovie}
                 savedMovies={savedMovies}
@@ -214,6 +236,7 @@ export default function App() {
             path={'/profile'}
             element={
               <ProtectedRoute
+                path='/profile'
                 isLoggedIn={isLoggedIn}
                 element={Profile}
                 logOut={handleLogOut}

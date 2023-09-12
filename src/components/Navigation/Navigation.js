@@ -1,9 +1,8 @@
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import './Navigation.css';
 
 export default function Navigation({ isOpen, onClose }) {
-  const page = useLocation();
 
   const setActiveLink = ({ isActive }) =>
     isActive ? 'menu-link_active' : 'menu-link';
