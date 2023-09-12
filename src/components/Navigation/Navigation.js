@@ -5,34 +5,22 @@ import './Navigation.css';
 export default function Navigation({ isOpen, onClose }) {
   const page = useLocation();
 
+  const setActiveLink = ({ isActive }) =>
+    isActive ? 'menu-link_active' : 'menu-link';
+
   return (
     <div className={`menu ${isOpen ? 'menu_visible' : ''}`}>
       <div className='menu__popup'>
         <div className='menu__container'>
           <button className='menu__close' onClick={onClose} />
           <div className='menu__open'>
-            <NavLink
-              className={
-                page.pathname === '/' ? 'menu-link_active' : 'menu-link'
-              }
-              to='/'
-            >
+            <NavLink className={setActiveLink} to='/'>
               Главная
             </NavLink>
-            <NavLink
-              className={
-                page.pathname === '/' ? 'menu-link_active' : 'menu-link'
-              }
-              to='/movies'
-            >
+            <NavLink className={setActiveLink} to='/movies'>
               Фильмы
             </NavLink>
-            <NavLink
-              className={
-                page.pathname === '/' ? 'menu-link_active' : 'menu-link'
-              }
-              to='/saved-movies'
-            >
+            <NavLink className={setActiveLink} to='/saved-movies'>
               Сохраненные фильмы
             </NavLink>
           </div>

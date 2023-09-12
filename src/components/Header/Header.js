@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../../images/logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 import Navigation from '../Navigation/Navigation';
 
@@ -11,6 +11,7 @@ export default function Header({ isLoggedIn }) {
   //управление стейтом открытого меню
   const menuHandler = () => setIsMenuOpen(!isMenuOpen);
 
+  const setActiveLink = ({ isActive }) => isActive ? 'header__link_active' : 'header__link';
 
   return (
     <header className='header'>
@@ -20,12 +21,12 @@ export default function Header({ isLoggedIn }) {
         </Link>
         {isLoggedIn ? (
           <div className='header__links'>
-            <Link className='header__link' to='/movies'>
+            <NavLink className={setActiveLink} to='/movies'>
               Фильмы
-            </Link>
-            <Link className='header__link' to='/saved-movies'>
+            </NavLink>
+            <NavLink className={setActiveLink} to='/saved-movies'>
               Сохраненные фильмы
-            </Link>
+            </NavLink>
           </div>
         ) : (
           ''
