@@ -5,7 +5,11 @@ import SearchForm from '../SearchForm/SearchForm';
 import MovieCardList from '../MovieCardList/MovieCardList';
 import { filterMovies, filterShortMovies } from '../../utils/utils';
 
-export default function SavedMovies({ isLoggedIn, savedMovies, onRemoveMovie }) {
+export default function SavedMovies({
+  isLoggedIn,
+  savedMovies,
+  onRemoveMovie,
+}) {
   const [filteredMovies, setFilteredMovies] = useState(savedMovies);
   const [searchRequest, setSearchRequest] = useState('');
   const [shortMovies, setShortMovies] = useState(false);
@@ -34,7 +38,7 @@ export default function SavedMovies({ isLoggedIn, savedMovies, onRemoveMovie }) 
 
   return (
     <section>
-      <Header isLoggedIn={isLoggedIn}/>
+      <Header isLoggedIn={isLoggedIn} />
       <SearchForm
         onFilterMovies={handleShortMovieToggle}
         searchAndFilterMovies={searchAndFilterMovies}

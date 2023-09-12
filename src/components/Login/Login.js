@@ -24,30 +24,29 @@ export default function Login({ onAuthorization }) {
         </Link>
         <h2 className='login__title'>Рады видеть!</h2>
       </div>
-      <form className='login__form' onSubmit={onSubmitLoginForm} noValidate>
+      <form className='login__form' onSubmit={onSubmitLoginForm}>
         <label className='login__label'>E-mail</label>
         <input
           className='login__input'
           name='email'
           type='email'
+          pattern="\w+@\w+\.\w+"
           required
-          autoComplete='on'
           value={enteredValues.email || ''}
           onChange={handleChangeInput}
         />
-        <span className='login__error'>{isError.emailErr}</span>
+        <span className='login__error'>{isError.email}</span>
         <label className='login__label'>Пароль</label>
         <input
           className='login__input'
           name='password'
           type='password'
           required
-          autoComplete='on'
           minLength='8'
           value={enteredValues.password || ''}
           onChange={handleChangeInput}
         />
-        <span className='login__error'>{isError.passwordErr}</span>
+        <span className='login__error'>{isError.password}</span>
         <button
           className={isFormValid ? 'login__button' : 'login__button_disabled'}
           type='submit'

@@ -26,6 +26,17 @@
     font-weight: 500;
 }
 
+.header__link_active {
+    color: #FFF;
+    line-height: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+}
+
 .header__links {
     display: flex;
     gap: 30px;
@@ -98,6 +109,10 @@
     }
 
     .header__link {
+        display: none;
+    }
+
+    .header__link_active {
         display: none;
     }
 
