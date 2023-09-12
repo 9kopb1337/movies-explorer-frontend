@@ -1,9 +1,9 @@
-import { BASE_URL, TEST_URL } from './constants';
+import { BASE_URL } from './constants';
 import { checkRes } from './utils';
 
 
 export const register = (name, email, password) => {
-  return fetch(`${TEST_URL}/signup`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -14,7 +14,7 @@ export const register = (name, email, password) => {
 };
 
 export const authorize = (email, password) => {
-  return fetch(`${TEST_URL}/signin`, {
+  return fetch(`${BASE_URL}/signin`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -25,7 +25,7 @@ export const authorize = (email, password) => {
 };
 
 export const getUsersContent = (token) => {
-  return fetch(`${TEST_URL}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -36,7 +36,7 @@ export const getUsersContent = (token) => {
 };
 
 export const getProfileInfo = () => {
-  return fetch(`${TEST_URL}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
@@ -47,7 +47,7 @@ export const getProfileInfo = () => {
 }
 
 export const patchProfileInfo = (data) => {
-  return fetch(`${TEST_URL}/users/me`, {
+  return fetch(`${BASE_URL}/users/me`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export const patchProfileInfo = (data) => {
 };
 
 export const getSavedMovies = () => {
-  return fetch(`${TEST_URL}/movies`, {
+  return fetch(`${BASE_URL}/movies`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ export const getSavedMovies = () => {
 };
 
 export const saveMovie = (data) => {
-  return fetch(`${TEST_URL}/movies`, {
+  return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export const saveMovie = (data) => {
 };
 
 export const removeMovie = (movieId) => {
-  return fetch(`${TEST_URL}/movies/${movieId}`, {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',

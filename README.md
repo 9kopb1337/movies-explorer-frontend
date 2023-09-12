@@ -2,6 +2,8 @@ movies-explorer-frontend
 
 Я выбрал макет - Dark-2.
 
+НИЧЕГО НЕ НАЙДЕНО - на странице сохраненных фильмов не ошибка, так и задумано.
+
 ссылка на пул реквест - https://github.com/9kopb1337/movies-explorer-frontend/pull/7
 
 ссылка на проект - https://diplom.novch.nomoreparties.sbs/
