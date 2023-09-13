@@ -6,7 +6,7 @@ movies-explorer-frontend
 
 НИЧЕГО НЕ НАЙДЕНО - на странице сохраненных фильмов не ошибка, так и задумано.
 
-ссылка на пул реквест - #11
+ссылка на пул реквест - [#11](https://github.com/9kopb1337/movies-explorer-frontend/pull/11)
 
 ссылка на проект - https://diplom.novch.nomoreparties.sbs/
 
